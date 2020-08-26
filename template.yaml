@@ -1,0 +1,34 @@
+parameters:
+    - name: STORE
+      description: "The store to watch to trigger the function and save the generated watermark image."
+      type: STORE_REF
+      required: true
+    - name: GCP_KEY_SECRET
+      description: "The name of the secret in which the GCP Key will be stored."
+      type: SECRET_REF
+      required: true
+    - name: GCP_VISION_OPERATION
+      description: "The name of the vision operation you want to perform. It can be any of face-detection image-properties label-detection landmark-detection logo-detection object-localization safe-search-detection web-detection text-detection document-text-detection."
+      type: "STRING"
+      required: true
+    - name: IMAGE_PREFIX
+      description: "Only analyse images which start with this file prefix."
+      type: "STRING"
+      default: ""
+template: |
+    env:
+        GCP_VISION_OPERATION: {{ .GCP_VISION_OPERATION }}
+        GCP_KEY:
+          value_from_secret: {{ .GCP_KEY_SECRET }}
+        {{ end }}
+    volumes:
+    - store: {{ .STORE }}
+    events:
+      - cloudevent:
+          expression: |
+            event.source == "koyeb.com/gateway" &&
+            event.subject == "{{ .STORE }}" &&
+            event.type.matches("s3:ObjectCreated:.*") &&
+            data.object.key.startsWith("{{ .IMAGE_PREFIX }}") &&
+            data.object.key.matches("([^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$)")
+

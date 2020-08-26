@@ -1,0 +1,10 @@
+functions:
+  - name: func-gcp-image-vision
+    runtime: python3.8
+    handler: gcp_image_vision.handler
+    env:
+      GCP_VISION_OPERATION: label-detection
+      GCP_KEY:
+        value_from_secret: gcp-key
+    volumes:
+      - store: yann-dev
