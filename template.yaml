@@ -20,7 +20,6 @@ template: |
         GCP_VISION_OPERATION: {{ .GCP_VISION_OPERATION }}
         GCP_KEY:
           value_from_secret: {{ .GCP_KEY_SECRET }}
-        {{ end }}
     volumes:
     - store: {{ .STORE }}
     events:
