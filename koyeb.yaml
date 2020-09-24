@@ -1,5 +1,5 @@
 functions:
-  - name: function-gcp-image-vision
+  - name: gcp-image-vision
     runtime: python3.8
     handler: gcp_image_vision.handler
     env:
