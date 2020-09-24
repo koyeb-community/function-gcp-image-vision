@@ -1,14 +1,16 @@
 ---
 display_name: Google Cloud Vision API
 status: ACTIVE
-version: 0.0.1
+version: 0.1.0
 ---
 
 
 > This is a development version.
 
 ## Summary
+
 This function comes with the following variants:
+
 * *Image properties*: The image properties integration detects general attributes of the image, such as dominant color.
 * *Label Detection*: The label detection integration will return labels about an image. It will detect general objects, locations, activities, animal species, products and more. Labels are returned in English.
 * *Logo Detection*: The logo detection integration detects popular logos within an image. It returns their coordinates and description.
