@@ -2,7 +2,7 @@
 display_name: Google Cloud Vision API
 status: ACTIVE
 icon: https://assets.koyeb.com/icons/gcp.svg
-version: 0.1.0
+short_description: The GCP Image Vision function allows you to enable powerful content discovery and analysis in your images.
 ---
 
 ## Summary
